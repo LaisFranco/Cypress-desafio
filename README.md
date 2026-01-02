@@ -1,11 +1,12 @@
 # Projeto Cypress
 
-Projeto de testes end-to-end (E2E) usando Cypress — exemplo focado no fluxo:
+- Projeto de testes end-to-end (E2E) usando Cypress — exemplo focado no fluxo:
 - busca de produto
 - inclusão no carrinho
 - validação dos itens na tela de pagamento
 
 **Observação:** a estrutura foi pensada para ser simples e legível; você pode usar qualquer IDE, recomendo Visual Studio Code.
+ 
 
 ## Estrutura do projeto
 
@@ -17,9 +18,6 @@ cypress/
 ├── fixtures/           # Dados de teste (ex: usuarios.json)
 ├── pages/              # Page Objects (LoginPage.js, ProductsPage.js)
 ├── support/            # Suporte e comandos (commands.js, e2e.js)
-├── screenshots/        # Screenshots gerados pelos testes
-cypress.config.js      # Configuração do Cypress
-package.json           # Scripts e dependências
 README.md
 ```
 
@@ -29,6 +27,15 @@ README.md
 - npm
 - Conexão com a internet (os testes acessam https://www.automationexercise.com)
 
+## Clonar o repositório (comece por aqui)
+
+```bash
+git clone git@github.com:LaisFranco/Cypress-desafio.git
+cd Cypress-desafio
+```
+Após clonar, siga os passos de instalação abaixo.
+
+
 ## Instalação
 
 1. Instale dependências:
@@ -36,8 +43,6 @@ README.md
 ```bash
 npm install
 ```
-
-2. (Opcional) Abra o projeto no VS Code:
 
 ```bash
 code .
@@ -62,6 +67,49 @@ npm run cypress:run
 ```bash
 npm run cypress:run -- --spec "cypress/e2e/login.cy.js"
 ```
+
+### Abrir o Cypress usando o navegador Chrome
+
+No modo interativo você pode escolher o navegador na UI. Para forçar o Chrome via CLI:
+
+```bash
+# abrir a interface do Cypress com o Chrome
+npm run cypress:open -- --browser chrome
+
+# executar em headless usando o Chrome
+npm run cypress:run -- --browser chrome --headless
+```
+
+### Gravando vídeos das execuções
+
+Por padrão o comando `cypress run` (modo headless) gera vídeos das execuções e os salva em `cypress/videos`.
+
+- Para garantir que vídeos sejam gravados, verifique ou adicione no `cypress.config.js`:
+
+```js
+const { defineConfig } = require('cypress')
+
+module.exports = defineConfig({
+  e2e: {
+    baseUrl: 'https://www.automationexercise.com'
+  },
+  video: true,
+  videosFolder: 'cypress/videos'
+})
+```
+
+- Para desabilitar vídeos (ex.: quando não quiser arquivos grandes):
+
+```bash
+npx cypress run --config video=false
+```
+
+Os screenshots continuam sendo salvos em `cypress/screenshots` automaticamente quando um teste falha (ou via `cy.screenshot()`).
+
+### Nota sobre inclusão dos vídeos no repositório
+
+- Para demonstração eu deixei os vídeos de `login` e `produtos` incluídos no repositório. Para isso a entrada que ignora `cypress/videos` foi temporariamente comentada no `.gitignore` para possibilitar o commit.
+- Observação: o procedimento correto em projetos reais é NÃO commitar vídeos (arquivos binários grandes). Isso foi feito aqui apenas para facilitar a revisão e demonstração. Recomenda-se reverter a alteração no `.gitignore` após a demonstração.
 
 ## Configuração de dados (fixtures)
 
