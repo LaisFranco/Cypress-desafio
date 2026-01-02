@@ -1,0 +1,10 @@
+# Cypress Testes E2E
+
+node_modules/
+.DS_Store
+cypress/downloads/
+cypress/screenshots/
+cypress/videos/
+dist/
+.env
+.env.local
