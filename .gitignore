@@ -4,6 +4,7 @@ node_modules/
 .DS_Store
 cypress/downloads/
 cypress/screenshots/
+cypress/screenshots/api.cy.js/
 # Temporariamente comentado abaixo para permitir commitar os vídeos de demonstração (não recomendado)
 # cypress/videos/
 dist/
