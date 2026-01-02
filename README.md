@@ -137,3 +137,18 @@ Edite esse arquivo se quiser usar outras credenciais.
 2. Instale a extensão recomendada (opcional): ESLint, Prettier.
 3. Use o terminal integrado para rodar os comandos `npm` acima.
 
+-----
+
+## Parte 2 — Teste de API (Trello)
+
+Foi implementada a parte 2 do desafio de API que realiza um GET para a URL:
+
+```
+https://api.trello.com/1/actions/592f11060f95a3d3d46a987a
+```
+
+O teste valida o status code da resposta e, quando o campo está presente, exibe o valor do campo `name` dentro da estrutura `list` (no payload a chave fica em `response.body.data.list.name`).
+
+O resultado desse GET é salvo em `cypress/results/trello-action.json` para inspeção e registro.
+
+Observação: se a API exigir `key`/`token`, você pode configurá-los em `cypress/fixtures/trello.json` ou passar via `Cypress.env`.
